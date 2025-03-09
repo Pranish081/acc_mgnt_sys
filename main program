@@ -71,14 +71,14 @@ int main()
 int menu()
 {
     int c;
-    printf("                *************** MAIN MENU ***************\n");
+    printf("*************** MAIN MENU ***************\n");
     divider();
-    printf("                1. SIGN UP.\n");
-    printf("                2. LOG IN.\n");
-    printf("                3. MODIFY YOUR EXISTING DATA.\n");
-    printf("                4. CHANGE PASSWORD.\n");
-    printf("                5. DELETE ACCOUNT.\n");
-    printf("                6. EXIT.\n");
+    printf("             1. SIGN UP.\n");
+    printf("             2. LOG IN.\n");
+    printf("             3. MODIFY YOUR EXISTING DATA.\n");
+    printf("             4. CHANGE PASSWORD.\n");
+    printf("             5. DELETE ACCOUNT.\n");
+    printf("             6. EXIT.\n");
     divider();
     printf("Enter your choice. ");
     scanf("%d", &c);
