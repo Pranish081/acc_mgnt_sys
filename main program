@@ -29,7 +29,7 @@ void log_in();
 void modify();
 void change_pass();
 void delete_account();
-char takepassword(char[]);
+char* takepassword(char[]);
 int main()
 {
     while (1)
@@ -55,7 +55,7 @@ int main()
         case 6:
             printf("\n");
             divider();
-            printf("\n*******************THANK YOU********************\n\n");
+            printf("\n******************* THANK YOU ********************\n\n");
             printf("\nPRESS ANY KEY TO EXIT .");
             getch();
             exit(0);
@@ -71,14 +71,14 @@ int main()
 int menu()
 {
     int c;
-    printf("***************MAIN MENU***************\n");
+    printf("                *************** MAIN MENU ***************\n");
     divider();
-    printf("1. SIGN UP.\n");
-    printf("2. LOG IN.\n");
-    printf("3. MODIFY YOUR EXISTING DATA.\n");
-    printf("4. CHANGE PASSWORD.\n");
-    printf("5. DELETE ACCOUNT.\n");
-    printf("6. EXIT.\n");
+    printf("                1. SIGN UP.\n");
+    printf("                2. LOG IN.\n");
+    printf("                3. MODIFY YOUR EXISTING DATA.\n");
+    printf("                4. CHANGE PASSWORD.\n");
+    printf("                5. DELETE ACCOUNT.\n");
+    printf("                6. EXIT.\n");
     divider();
     printf("Enter your choice. ");
     scanf("%d", &c);
@@ -127,6 +127,11 @@ void sign_up()
     else
     {
         FILE *fp = fopen("D:\\account.txt", "wb");
+        if (fp == NULL)
+        {
+            printf("Error opening file! Exiting...\n");
+            exit(1);
+        }
         printf("\nEnter security question (In Case You Forget Your Password) \n");
         printf("What is your nickname? : ");
         scanf("%s", s.nick_name);
@@ -134,12 +139,12 @@ void sign_up()
         fclose(fp);
         printf("\n");
         divider();
-        printf("\n****************ACCOUNT CREATED SUCCESFULLY*****************\n");
+        printf("\n**************** ACCOUNT CREATED SUCCESSFULLY *****************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
     }
 }
-char takepassword(char pass[])
+char* takepassword(char pass[])
 {
     int i = 0;
     char ch;
@@ -179,6 +184,11 @@ void log_in()
     char user[20], log_pass[15], nick[20], pass2[15];
     struct account s;
     FILE *fp = fopen("D:\\account.txt", "rb");
+    if (fp == NULL)
+    {
+    printf("Error opening file! Exiting...\n");
+    exit(1);
+    }
     fread(&s, sizeof(struct account), 1, fp);
     name:
     printf("Enter Username : ");
@@ -231,7 +241,7 @@ void log_in()
                             fwrite(&s, sizeof(s), 1, fp);
                             printf("\n");
                             divider();
-                            printf("***************PASSWORD CHANGED SUCCESSFULLY***************\n");
+                            printf("\n*************** PASSWORD CHANGED SUCCESSFULLY ***************\n");
                             printf("\nPRESS ANY KEY TO CONTINUE .");
                             getch();
                             system("cls");
@@ -253,7 +263,7 @@ void log_in()
         else
         {
             system("cls");
-            printf("\n*****************WELCOME %s*****************\n", s.first_name);
+            printf("\n***************** WELCOME %s *****************\n", s.first_name);
             divider();
             printf("\nYour Details \n");
             divider();
@@ -281,6 +291,11 @@ void modify()
     char user1[20], pass[15], nick[20], pass2[15];
     int i;
     FILE *fp = fopen("D:\\account.txt", "rb+");
+    if (fp == NULL)
+    {
+    printf("Error opening file! Exiting...\n");
+    exit(1);
+    }
     fread(&s, sizeof(s), 1, fp);
     top1:
     printf("Enter username : ");
@@ -330,7 +345,7 @@ void modify()
                         fwrite(&s, sizeof(s), 1, fp);
                         printf("\n");
                         divider();
-                        printf("\n***************PASSWORD CHANGED SUCCESSFULLY***************\n");
+                        printf("\n*************** PASSWORD CHANGED SUCCESSFULLY ***************\n");
                         printf("\nPRESS ANY KEY TO CONTINUE .\n");
                         system("cls");
                         getch();
@@ -354,8 +369,8 @@ void modify()
     printf("\n*****************WELCOME %s*****************\n", s.first_name);
     divider();
     top3:
-    printf("\nWhat do you want to modify :\n");
-    printf("1. First name.\n2. Last name.\n3. Phone number.\n4. Address.\n5. Date of birth.\n6. Gender.\n7. User name. \n8. Exit. \n");
+    printf("\nWhat do you want to Modify :\n");
+    printf("1. FIRST NAME.\n2. LAST NAME.\n3. PHONE NUMBER.\n4. ADDRESS.\n5. DATE OF BIRTH.\n6. GENDER.\n7. USER NAME.\n8. NICK NAME.\n9. EXIT. \n");
     divider();
     printf("\nEnter your choice : ");
     scanf("%d", &i);
@@ -368,7 +383,7 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************FIRST NAME CHANGED SUCCESSFULLY***********\n");
+        printf("\n************ FIRST NAME CHANGED SUCCESSFULLY ***********\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
@@ -380,7 +395,7 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************LAST NAME CHANGED SUCCESSFULLY************\n");
+        printf("\n************ LAST NAME CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
@@ -392,7 +407,7 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************PHONE NUMBER CHANGED SUCCESSFULLY************\n");
+        printf("\n************ PHONE NUMBER CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
@@ -404,7 +419,7 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n**************ADDRESS CHANGED SUCCESSFULLY************\n");
+        printf("\n************** ADDRESS CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
@@ -416,7 +431,7 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************DOB CHANGED SUCCESSFULLY************\n");
+        printf("\n************ DOB CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
@@ -434,24 +449,36 @@ void modify()
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************GENDER CHANGED SUCCESSFULLY************\n");
+        printf("\n************ GENDER CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
         goto top3;
     case 7:
-        printf("Enter your User Name : ");
+        printf("Enter your new User Name : ");
         scanf("%s", s.user_name);
         fseek(fp, 0, SEEK_SET);
         fwrite(&s, sizeof(s), 1, fp);
         printf("\n");
         divider();
-        printf("\n************USER NAME CHANGED SUCCESSFULLY************\n");
+        printf("\n************ USER NAME CHANGED SUCCESSFULLY ************\n");
         printf("\nPRESS ANY KEY TO CONTINUE .");
         getch();
         system("cls");
         goto top3;
     case 8:
+        printf("Enter your new Nick Name : ");
+        scanf("%s", s.nick_name);
+        fseek(fp, 0, SEEK_SET);
+        fwrite(&s, sizeof(s), 1, fp);
+        printf("\n");
+        divider();
+        printf("\n************ USER NAME CHANGED SUCCESSFULLY ************\n");
+        printf("\nPRESS ANY KEY TO CONTINUE .");
+        getch();
+        system("cls");
+        goto top3;
+    case 9:
         break;
     default:
         printf("INVALID NUMBER!\n");
@@ -469,6 +496,11 @@ void change_pass()
     char current[20],pass2[20],nick[20],user1[20];
     struct account s;
     FILE *fp = fopen("D:\\account.txt", "rb");
+    if (fp == NULL)
+    {
+        printf("Error opening file! Exiting...\n");
+        exit(1);
+    }
     fread(&s, sizeof(s), 1, fp);
     top1:
     printf("\nEnter username : ");
@@ -517,7 +549,7 @@ void change_pass()
                         fwrite(&s, sizeof(s), 1, fp);
                         printf("\n");
                         divider();
-                        printf("***************PASSWORD CHANGED SUCCESSFULLY***************\n");
+                        printf("*************** PASSWORD CHANGED SUCCESSFULLY ***************\n");
                         printf("\nPRESS ANY KEY TO CONTINUE .");
                         getch();
                     }
@@ -557,7 +589,7 @@ void change_pass()
                 fwrite(&s, sizeof(s), 1, fp);
                 printf("\n");
                 divider();
-                printf("***************PASSWORD CHANGED SUCCESSFULLY***************\n");
+                printf("*************** PASSWORD CHANGED SUCCESSFULLY ***************\n");
                 printf("\nPRESS ANY KEY TO CONTINUE .");
                 getch();
             }
@@ -581,6 +613,11 @@ void delete_account()
     printf("DELETING YOUR ACCOUNT....\n");
     divider();
     FILE *fp = fopen("D:\\account.txt", "rb");
+        if (fp == NULL)
+        {
+            printf("Error opening file! \n");
+            exit(1);
+        }
     fread(&s, sizeof(s), 1, fp);
     top1:
     printf("Enter username : ");
@@ -635,7 +672,7 @@ void delete_account()
                         fwrite(&s, sizeof(s), 1, fp);
                         printf("\n");
                         divider();
-                        printf("***************PASSWORD CHANGED SUCCESSFULLY***************\n");
+                        printf("*************** PASSWORD CHANGED SUCCESSFULLY ***************\n");
                         printf("\nPRESS ANY KEY TO CONTINUE .");
                         getch();
                         goto top2;
@@ -662,7 +699,7 @@ void delete_account()
             fp = fopen("D:\\account.txt", "wb");
             printf("\n");
             divider();
-            printf("\n*****************ACCOUNT DELETED SUCCESSFULLY********************\n");
+            printf("\n***************** ACCOUNT DELETED SUCCESSFULLY ********************\n");
             printf("\nPRESS ANY KEY TO CONTINUE .");
             getch();
         }
@@ -670,7 +707,7 @@ void delete_account()
         {
             printf("\n");
             divider();
-            printf("\n*****************ACCOUNT DELETION STOPPED***********************\n");
+            printf("\n***************** ACCOUNT DELETION STOPPED ***********************\n");
             printf("\nPRESS ANY KEY TO CONTINUE .");
             getch();
         }
