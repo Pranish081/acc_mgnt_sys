@@ -1,3 +1,5 @@
+// Account Managemnet Software/System.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +17,7 @@ struct account
     char password1[15];
     char nick_name[20];
 };
-void divider()
+void divider()                   //Divides the line by putting multiple dash.
 {
     for (int i = 0; i < 65; i++)
     {
@@ -30,7 +32,7 @@ void modify();
 void change_pass();
 void delete_account();
 char* takepassword(char[]);
-int main()
+int main()                      //Main Program.             
 {
     while (1)
     {
@@ -58,7 +60,7 @@ int main()
             printf("\n******************* THANK YOU ********************\n\n");
             printf("\nPRESS ANY KEY TO EXIT .");
             getch();
-            exit(0);
+            exit(0);                 // Exit.
         default:
             printf("INVALID NUMBER.\n");
             printf("\nPRESS ANY KEY TO CONTINUE .");
@@ -68,23 +70,23 @@ int main()
     }
     return 0;
 }
-int menu()
+int menu()                     //Shows Main menu.
 {
     int c;
-    printf("*************** MAIN MENU ***************\n");
+    printf("        *************** MAIN MENU ***************\n");
     divider();
-    printf("             1. SIGN UP.\n");
-    printf("             2. LOG IN.\n");
-    printf("             3. MODIFY YOUR EXISTING DATA.\n");
-    printf("             4. CHANGE PASSWORD.\n");
-    printf("             5. DELETE ACCOUNT.\n");
-    printf("             6. EXIT.\n");
+    printf("1. SIGN UP.\n");
+    printf("2. LOG IN.\n");
+    printf("3. MODIFY YOUR EXISTING DATA.\n");
+    printf("4. CHANGE PASSWORD.\n");
+    printf("5. DELETE ACCOUNT.\n");
+    printf("6. EXIT.\n");
     divider();
     printf("Enter your choice. ");
     scanf("%d", &c);
     return c;
 }
-void sign_up()
+void sign_up()                 //Let us sign up a account.
 {
     struct account s;
     system("cls");
@@ -144,7 +146,7 @@ void sign_up()
         getch();
     }
 }
-char* takepassword(char pass[])
+char* takepassword(char pass[])          //Takes password and return it showing "*" instead of text.
 {
     int i = 0;
     char ch;
@@ -176,7 +178,7 @@ char* takepassword(char pass[])
     }
     return pass;
 }
-void log_in()
+void log_in()                            //Let us log into our account.
 {
     system("cls");
     printf("LOGGING IN....\n");
@@ -265,16 +267,16 @@ void log_in()
             system("cls");
             printf("\n***************** WELCOME %s *****************\n", s.first_name);
             divider();
-            printf("\nYour Details \n");
+            printf("\nYOUR DETAILS : \n");
             divider();
-            printf("First name   : %s\n", s.first_name);
-            printf("Last name    : %s\n", s.last_name);
-            printf("Phone number : %s\n", s.phone);
-            printf("Address      : %s\n", s.address);
-            printf("DOB          : %s\n", s.DOB);
-            printf("Gender       : %c\n", s.gender);
-            printf("Username     : %s\n", s.user_name);
-            printf("Nickname     : %s\n", s.nick_name);
+            printf("FIRST NAME     : %s\n", s.first_name);
+            printf("LAST NAME      : %s\n", s.last_name);
+            printf("PHONE NUMBER   : %s\n", s.phone);
+            printf("ADDRESS        : %s\n", s.address);
+            printf("DOB            : %s\n", s.DOB);
+            printf("GENDER         : %c\n", s.gender);
+            printf("USER NAME      : %s\n", s.user_name);
+            printf("NICK NAME      : %s\n", s.nick_name);
             divider();
             printf("\nPRESS ANY KEY TO CONTINUE .");
         }
@@ -282,7 +284,7 @@ void log_in()
     }
     fclose(fp);
 }
-void modify()
+void modify()                           //Let us Modify our account.
 {
     system("cls");
     printf("MODIFYING YOUR DATA....\n");
@@ -488,7 +490,7 @@ void modify()
     }
     fclose(fp);
 }
-void change_pass()
+void change_pass()                      //Let us Change password of our account.
 {
     system("cls");
     printf("CHANING YOUR PASSWORD....\n");
@@ -602,7 +604,7 @@ void change_pass()
     }
     fclose(fp);
 }
-void delete_account()
+void delete_account()                   //Let us Delete our account.
 {
     system("cls");
     char user[20];
